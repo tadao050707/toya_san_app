@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_28_084020) do
+ActiveRecord::Schema.define(version: 2022_11_29_042540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2022_11_28_084020) do
   create_table "attendancebooks", force: :cascade do |t|
     t.date "day"
     t.integer "presence_or_absence"
-    t.text "remark"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "kid_id", null: false

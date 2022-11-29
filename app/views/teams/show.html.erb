@@ -1,5 +1,8 @@
 <div class="show">
   <p>
+    <%= notice %>
+  </p>
+  <p>
     <strong>クラス名:</strong>
     <%= @team.name %>
   </p>
@@ -12,10 +15,12 @@
         <p>
           <strong>名前:</strong>
           <%= kid.name %>
-          <%= f.select :presence_or_absence, [["出席", 0], ["欠席", 1]], include_blank: "選択して下さい" %>
+          <%= f.select "#{kid.id}_attendance", [["出席", 1], ["欠席", 0]], include_blank: "選択して下さい", id: i %>
+          <%#= f.hidden_field :kid_id, value: kid.id %>
         </p>
       </div>
     <% end %>
+    <%= f.hidden_field :team_id, value: @team.id %>
     <%= f.submit %>
   <% end %>
 </div>
