@@ -1,0 +1,45 @@
+<%= form_with(model: @team, local: true) do |form| %>
+  <% if @team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+      <ul>
+        <% @team.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# <%= form_with(model: team, local: true) do |form| %>
+    <div class="field">
+      <%= form.label :クラス名 %>
+    </div>
+    </div>
+      <%= form.text_field :name %>
+    </div>
+    <hr>
+    <% n = 0 %>
+    <%= form.fields_for :kids do |kid| %>
+    <h3>園児名<%= n += 1 %></h3>
+
+      <%# <div class="field"> %>
+      <%= kid.label :name, "園児名" %>
+      <%= kid.text_field :name %>
+      </div>
+      
+      <% end %>
+      <%# <%= f.label :出欠 %>
+      <%# <%= f.text_field :kids_ids, Kid.all, :id, :name_with_initial %> 
+      <%# <%= f.label :出欠 %>
+      
+      <%# <%= f.collection_check_boxes :kids_ids, Kid.all, :id, :name_with_initial %>
+      <%# <%= f.collection_check_boxes(:attendancebooks_ids, Attendancebook.presence_or_absences, :id, :name_with_initial) %>
+      <%# <%= f. form.select :@team.kids. Attendancebook.presence_or_absences.keys, {} %>
+    <div class="actions">
+      <%= form.submit "登録" %>
+    </div>
+ 
+
+  <div class="back"><%= link_to t('.back'), teams_path %></div>
+<% end %>
