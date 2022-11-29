@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+  root 'teams#index' 
   resources :attendancebooks
   resources :teams do
     resources :kids
