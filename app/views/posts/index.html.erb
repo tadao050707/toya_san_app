@@ -1,0 +1,30 @@
+<h1><%= t('.memo') %></h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('.day') %></th>
+        <th><%= t('.remark') %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @posts.each do |post| %>
+        <% if post.user == current_user %>
+        <tr>
+          <td><%= post.day %></td>
+          <td><%= post.remark %></td>
+          <td><%= link_to t('.edit'), edit_post_path(post) %></td>
+          <td><%= link_to t('.show'), post_path(post) %></td>
+          <td><%= link_to t('.delete'), post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to t('.register_memo'), new_post_path, class: "login" %>
+</div>
