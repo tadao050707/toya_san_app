@@ -1,7 +1,14 @@
 <p id="notice"><%= notice %></p>
-<h1 class="top">カレンダー</h1>
+<h1 class="top">園児出席一覧カレンダー</h1>
 <br>
 
-<%= month_calendar do |date| %>
+<%= month_calendar events: @attendancebooks do |date, attendancebooks| %>
   <%= date.day %>
+  <div>
+  <% attendancebooks.each do |attendancebook| %>
+  <%# <% conditions.each do |condition| %> 
+    <%# <% binding.pry %>
+      <%= link_to Kid.find(attendancebook.kid_id).team.name %>
+  <% end %>
+  </div>
 <% end %>

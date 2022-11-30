@@ -1,6 +1,6 @@
 class AttendancebooksController < ApplicationController
-  def new
-    @attendancebooks = Attendancebook.new
+  def index
+    @attendancebooks = Attendancebook.all
   end
 
   def create
@@ -13,11 +13,11 @@ class AttendancebooksController < ApplicationController
     unless params[:attendancebook].values.include?("")
       team.kid_ids.each do |kid_id|
         attendance = params[:attendancebook]["#{kid_id}_attendance"].to_i
-        Attendancebook.create(kid_id: kid_id, presence_or_absence: attendance, day: Date.today)
+        Attendancebook.create(kid_id: kid_id, presence_or_absence: attendance, start_time: Date.today)
       end
-      redirect_to teams_path, notice: "ok"
+      redirect_to attendancebooks_path, notice: "出席確認できました！"
     else
-      redirect_to team_path(id: team_id), notice: "ng"
+      redirect_to team_path(id: team_id), notice: "もう一度確認してください！"
     end
   end
 
