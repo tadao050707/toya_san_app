@@ -5,6 +5,7 @@ class AttendancebooksController < ApplicationController
 
   def new
     @attendancebook = Attendancebook.new
+    @team = Team.find(params[:team_id])
   end
 
   def create
