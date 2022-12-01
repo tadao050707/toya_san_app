@@ -5,10 +5,14 @@
 <%= month_calendar events: @attendancebooks do |date, attendancebooks| %>
   <%= date.day %>
   <div>
+  <% class_names = [] %>
   <% attendancebooks.each do |attendancebook| %>
-  <%# <% conditions.each do |condition| %> 
-    <%# <% binding.pry %>
-      <%= link_to Kid.find(attendancebook.kid_id).team.name %>
+    <% unless class_names.include?(Kid.find(attendancebook.kid_id).team.name) %>
+      <% class_names << Kid.find(attendancebook.kid_id).team.name %>
+    <% end %>
   <% end %>
   </div>
+  <% class_names.each do |class_name| %>
+    <%= class_name %>
+  <% end %>
 <% end %>

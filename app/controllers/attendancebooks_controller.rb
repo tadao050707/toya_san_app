@@ -3,6 +3,10 @@ class AttendancebooksController < ApplicationController
     @attendancebooks = Attendancebook.all
   end
 
+  def new
+    @attendancebook = Attendancebook.new
+  end
+
   def create
     # @attendancebook = Attendancebook.create(attendancebook_params)
     # "attendancebook"=>{"13_presence_or_absence"=>"1", "team_id"=>"10"}

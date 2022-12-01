@@ -1,7 +1,6 @@
 <div class="show">
-  <p>
-    <%= notice %>
-  </p>
+  <% @team = Team.last %>
+
   <p>
     <strong>クラス名:</strong>
     <%= @team.name %>
@@ -24,13 +23,3 @@
     <%= f.submit %>
   <% end %>
 </div>
-
-<h2>今日の出席状況</h2>
-<% yulis = Kid.where(team_id: 2) %>
-<% yulis_today = Attendancebook.where(kid_id: yulis.pluck(:id)).where(start_time: Date.today) %>
-<% yulis_today.each do |kid| %>
-  <div>
-    <%= Kid.find(kid.kid_id).name %>
-    <%= kid.presence_or_absence %>
-  </div>
-<% end %>
