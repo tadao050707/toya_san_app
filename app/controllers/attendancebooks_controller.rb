@@ -1,6 +1,16 @@
 class AttendancebooksController < ApplicationController
   def index
     @attendancebooks = Attendancebook.all
+    if params[:day_data] && params[:class_name]
+      # パラメータで届いた日にちに合致する出席簿情報
+      the_day_attendance_datas = Attendancebook.where(start_time: params[:day_data])
+      # パラメータで届いたクラス名に合致する子供の情報
+      the_kids = Kid.where(team_id: "#{Team.find_by(name: params[:class_name]).id}")
+      # パラメータで届いた日にちとクラス名に合致する出席簿情報
+      @attendancebooks_teams = the_day_attendance_datas.where(kid_id: the_kids)
+      @day_data = params[:day_data]
+      @team_name = params[:class_name]
+    end
   end
 
   def new

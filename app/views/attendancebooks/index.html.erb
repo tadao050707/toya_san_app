@@ -11,6 +11,17 @@
 
 <hr>
 
+<div><strong><%= @day_data&.to_time.strftime("%Y年 %m月 %d日") %></strong></div>
+<div><strong><%= @team_name %></strong></div>
+<% @attendancebooks_teams&.each do |attendancebook| %>
+  <div>
+    <%= Kid.find_by(id: attendancebook.kid_id).name %>
+    <%= attendancebook.presence_or_absence %>
+  </div>
+<% end %>
+
+<hr>
+
 <%= month_calendar events: @attendancebooks do |date, attendancebooks| %>
   <%= date.day %>
   <div>
@@ -22,6 +33,7 @@
   <% end %>
   </div>
   <% class_names.each do |class_name| %>
-    <%= class_name %>
+    <%= link_to "#{class_name}",
+    attendancebooks_path(class_name: "#{class_name}", day_data: "#{date}") %>
   <% end %>
 <% end %>
